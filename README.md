@@ -1,7 +1,5 @@
 # portfoliowebsite
 
-*Automatically synced with your [v0.dev](https://v0.dev) deployments*
-
 ## Overview
 
 This repository will stay in sync with your deployed chats on [v0.dev](https://v0.dev).
