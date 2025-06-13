@@ -1,7 +1,6 @@
 "use client"
 import Image from "next/image"
 import { TypingText } from "./typing-text"
-import CircularText from "./circular-text"
 
 export function HeroSection() {
   return (
@@ -24,28 +23,14 @@ export function HeroSection() {
         </div>
 
         <div className="relative mt-8 w-full max-w-sm sm:max-w-md lg:max-w-lg">
-          {/* Circular Text Container */}
-          <div className="relative w-[300px] h-[300px] sm:w-[350px] sm:h-[350px] lg:w-[450px] lg:h-[450px] mx-auto">
-            {/* Circular Text */}
-            <div className="absolute inset-0 flex items-center justify-center">
-              <CircularText
-                text="SOFTWARE*ENGINEER*AI*ML*"
-                spinDuration={25}
-                onHover="speedUp"
-                className="portfolio-circular-text"
-              />
-            </div>
-
-            {/* Profile Image */}
-            <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[200px] h-[200px] sm:w-[240px] sm:h-[240px] lg:w-[300px] lg:h-[300px] rounded-full overflow-hidden border-4 border-red-400/30 shadow-2xl">
-              <Image
-                alt="Kshitiz Singh"
-                src="/images/kshitiz-profile.jpg"
-                fill
-                className="object-cover object-center"
-                priority
-              />
-            </div>
+          <div className="relative w-[250px] h-[250px] sm:w-[300px] sm:h-[300px] lg:w-[400px] lg:h-[400px] mx-auto rounded-full overflow-hidden border-4 border-red-400/20">
+            <Image
+              alt="Kshitiz Singh"
+              src="/images/kshitiz-profile.jpg"
+              fill
+              className="object-cover object-center"
+              priority
+            />
           </div>
 
           {/* Floating Tech Icons - Hidden on mobile, visible on larger screens */}
