@@ -1,5 +1,6 @@
 import { PixelSectionHeader } from "./pixel-section-header"
 import { TypingText } from "./typing-text"
+import ScrollFloat from "./scroll-float"
 
 export function CertificationsSection() {
   const certifications = [
@@ -40,7 +41,20 @@ export function CertificationsSection() {
       <div className="h-2" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <PixelSectionHeader
-          title="Certifications"
+          title={
+            <ScrollFloat
+              animationDuration={1.1}
+              ease="back.inOut(1.6)"
+              scrollStart="top bottom-=70px"
+              scrollEnd="center center-=35px"
+              stagger={0.045}
+              containerClassName="inline-block"
+              textClassName="text-xl font-pixel text-red-400"
+              as="span"
+            >
+              Certifications
+            </ScrollFloat>
+          }
           imageSrc="/images/certifications-pixel.png"
           className="p-4 md:p-6 lg:p-10"
           delay={100}

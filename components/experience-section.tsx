@@ -1,5 +1,6 @@
 import { PixelSectionHeader } from "./pixel-section-header"
 import { TypingText } from "./typing-text"
+import ScrollFloat from "./scroll-float"
 
 export function ExperienceSection() {
   const experiences = [
@@ -23,7 +24,20 @@ export function ExperienceSection() {
         <div className="h-2" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <PixelSectionHeader
-            title="Experience"
+            title={
+              <ScrollFloat
+                animationDuration={1.4}
+                ease="back.inOut(2.2)"
+                scrollStart="top bottom-=80px"
+                scrollEnd="center center-=30px"
+                stagger={0.035}
+                containerClassName="inline-block"
+                textClassName="text-xl font-pixel text-red-400"
+                as="span"
+              >
+                Experience
+              </ScrollFloat>
+            }
             imageSrc="/images/experience-pixel.png"
             className="p-4 sm:p-6 md:p-6 lg:p-10"
             delay={100}

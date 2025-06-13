@@ -1,5 +1,6 @@
 import { PixelSectionHeader } from "./pixel-section-header"
 import { TypingText } from "./typing-text"
+import ScrollFloat from "./scroll-float"
 
 export function EducationSection() {
   return (
@@ -7,7 +8,20 @@ export function EducationSection() {
       <div className="h-2" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <PixelSectionHeader
-          title="Education"
+          title={
+            <ScrollFloat
+              animationDuration={1.3}
+              ease="back.inOut(1.8)"
+              scrollStart="top bottom-=100px"
+              scrollEnd="center center-=50px"
+              stagger={0.04}
+              containerClassName="inline-block"
+              textClassName="text-xl font-pixel text-red-400"
+              as="span"
+            >
+              Education
+            </ScrollFloat>
+          }
           imageSrc="/images/education-pixel.png"
           className="p-4 md:p-6 lg:p-10"
           delay={2400}

@@ -9,80 +9,27 @@ import { ProjectsSection } from "@/components/projects-section"
 import { CertificationsSection } from "@/components/certifications-section"
 import { Footer } from "@/components/footer"
 import { DeviceDetectionModal } from "@/components/device-detection-modal"
-import { CursorEffect } from "@/components/cursor-effect"
+import DitherBackground from "@/components/dither-background"
 import Image from "next/image"
 
 export default function Portfolio() {
   return (
-    <div className="min-h-screen bg-b-light text-white relative overflow-hidden">
-      {/* Custom Cursor Effect */}
-      <CursorEffect />
+    <div className="min-h-screen text-white relative overflow-hidden">
+      {/* Dithered Wave Background */}
+      <DitherBackground
+        waveSpeed={0.03}
+        waveFrequency={2.5}
+        waveAmplitude={0.35}
+        waveColor={[0.9, 0.15, 0.15]}
+        colorNum={8}
+        pixelSize={2}
+        disableAnimation={false}
+        enableMouseInteraction={true}
+        mouseRadius={0.4}
+      />
 
       {/* Device Detection Modal */}
       <DeviceDetectionModal />
-
-      {/* Enhanced Background Pattern */}
-      <div className="pointer-events-none absolute h-full w-full overflow-clip">
-        <svg
-          height="1000"
-          xmlns="http://www.w3.org/2000/svg"
-          version="1.1"
-          xmlnsXlink="http://www.w3.org/1999/xlink"
-          viewBox="0 0 800 800"
-          opacity="0.6"
-        >
-          <defs>
-            <filter
-              id="blurry-filter"
-              x="-100%"
-              y="-100%"
-              width="300%"
-              height="600%"
-              filterUnits="objectBoundingBox"
-              primitiveUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feGaussianBlur
-                stdDeviation="40"
-                x="0%"
-                y="0%"
-                width="100%"
-                height="100%"
-                in="SourceGraphic"
-                edgeMode="none"
-                result="blur"
-              />
-            </filter>
-            <filter id="metallic-filter">
-              <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <g filter="url(#blurry-filter)">
-            <ellipse
-              transform="rotate(-40)"
-              opacity="0.4"
-              rx="84.5"
-              ry="577.5"
-              cx="70.5037638878946"
-              cy="85.13481004325507"
-              fill="hsla(0, 73%, 48%, 1.00)"
-            />
-            <ellipse
-              transform="rotate(40)"
-              opacity="0.2"
-              rx="60"
-              ry="400"
-              cx="400"
-              cy="200"
-              fill="hsla(0, 73%, 60%, 0.8)"
-            />
-          </g>
-        </svg>
-      </div>
 
       {/* 3D Side Navigation */}
       <span className="fixed bottom-2 left-2 z-50 hidden sm:block transition-opacity duration-500">
