@@ -10,7 +10,7 @@
   --dark-black: #111111;
   --metallic-gradient: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%, #1a1a1a 100%);
   --red-metallic: linear-gradient(135deg, #dc2626 0%, #ef4444 25%, #f87171 50%, #ef4444 75%, #dc2626 100%);
-  --black-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.85) 0%, rgba(10, 10, 10, 0.75) 50%, rgba(0, 0, 0, 0.85) 100%);
+  --black-glass: linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(10, 10, 10, 0.8) 50%, rgba(0, 0, 0, 0.9) 100%);
 }
 
 @layer base {
@@ -25,7 +25,7 @@
     font-weight: 500;
     cursor: none !important;
     overflow-x: hidden;
-    background: transparent;
+    background: var(--jet-black);
     font-family: var(--font-pixel);
   }
 
@@ -55,6 +55,81 @@
       15px rgba(239, 68, 68, 0.4);
     line-height: 1.1;
     font-variant: small-caps;
+  }
+
+  /* Custom Cursor Container */
+  .cursor-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99999;
+    mix-blend-mode: difference;
+  }
+
+  /* Main cursor dot */
+  .cursor-dot {
+    position: fixed;
+    width: 8px;
+    height: 8px;
+    background: #ef4444;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: all 0.1s ease-out;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.8), 0 0 20px rgba(239, 68, 68, 0.4);
+  }
+
+  .cursor-dot.cursor-moving {
+    transform: translate(-50%, -50%) scale(1.5);
+    background: #f87171;
+  }
+
+  /* Trailing glow */
+  .cursor-glow {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, rgba(239, 68, 68, 0.3) 0%, rgba(239, 68, 68, 0.1) 50%, transparent 100%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    transition: all 0.3s ease-out;
+    animation: pulse-glow 2s infinite;
+  }
+
+  /* Outer ring */
+  .cursor-ring {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99997;
+    transform: translate(-50%, -50%);
+    transition: all 0.2s ease-out;
+  }
+
+  .cursor-ring.cursor-ring-moving {
+    transform: translate(-50%, -50%) scale(0.8);
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.6;
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: translate(-50%, -50%) scale(1.2);
+    }
   }
 
   /* Make all text bolder and more graphical */
@@ -106,7 +181,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.8) 0%, rgba(10, 10, 10, 0.6) 50%, rgba(0, 0, 0, 0.8) 100%);
+  background: linear-gradient(90deg, var(--jet-black) 0%, var(--deep-black) 50%, var(--jet-black) 100%);
   border-radius: 6px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8);
 }
@@ -193,6 +268,33 @@
   }
 }
 
+/* Jet Black Background styles */
+.bg-b-light {
+  background: var(--jet-black);
+  position: relative;
+}
+
+.bg-b-light::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(239, 68, 68, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 40% 60%, rgba(255, 255, 255, 0.01) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Jet Black Pattern */
+.pattern-2 {
+  background-image: radial-gradient(circle at 1px 1px, rgba(239, 68, 68, 0.2) 1px, transparent 0),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(255, 255, 255, 0.01) 25%, transparent 25%);
+  background-size: 20px 20px, 40px 40px, 40px 40px;
+}
+
 /* 3D Fade in animation */
 .fade-in {
   animation: fadeIn3D 0.8s ease-out;
@@ -209,13 +311,13 @@
   }
 }
 
-/* Enhanced Glass Card with better transparency for dithered background */
+/* Jet Black Glass Card */
 .glass-card {
   background: var(--black-glass);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(239, 68, 68, 0.3);
+  border: 1px solid rgba(239, 68, 68, 0.2);
   border-radius: 16px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(239, 68, 68, 0.15), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.1), inset 0 -1px 0 rgba(0, 0, 0, 0.3);
   position: relative;
   overflow: hidden;
 }
@@ -360,15 +462,15 @@
   background: radial-gradient(ellipse, rgba(239, 68, 68, 0.5) 0%, transparent 70%);
 }
 
-/* 3D Section Block Effects - Enhanced for dithered background */
+/* 3D Section Block Effects */
 .section-block {
   transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   transform-style: preserve-3d;
   position: relative;
   background: var(--black-glass);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(239, 68, 68, 0.15);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.1);
 }
 
 .section-block::before {
@@ -389,8 +491,8 @@
 
 .section-block:hover {
   transform: translateY(-15px) rotateX(8deg) rotateY(3deg) scale(1.02);
-  box-shadow: 0 30px 60px rgba(239, 68, 68, 0.25), 0 20px 40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 30px 60px rgba(239, 68, 68, 0.3), 0 20px 40px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
 /* 3D Project Card Effects */
@@ -399,9 +501,9 @@
   transform-style: preserve-3d;
   position: relative;
   background: var(--black-glass);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(239, 68, 68, 0.15);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.1);
   overflow: hidden;
 }
 
@@ -433,8 +535,8 @@
 
 .project-card:hover {
   transform: translateY(-18px) rotateX(10deg) rotateY(5deg) scale(1.05);
-  box-shadow: 0 35px 70px rgba(239, 68, 68, 0.3), 0 25px 50px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.5);
+  box-shadow: 0 35px 70px rgba(239, 68, 68, 0.4), 0 25px 50px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.6);
 }
 
 /* 3D Experience Card Effects */
@@ -443,14 +545,14 @@
   transform-style: preserve-3d;
   position: relative;
   background: var(--black-glass);
-  backdrop-filter: blur(22px);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(239, 68, 68, 0.15);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.1);
 }
 
 .experience-card:hover {
   transform: translateY(-12px) rotateX(6deg) rotateY(3deg) scale(1.03);
-  box-shadow: 0 25px 50px rgba(239, 68, 68, 0.25), 0 15px 30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.2);
+  box-shadow: 0 25px 50px rgba(239, 68, 68, 0.3), 0 15px 30px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(239, 68, 68, 0.2);
   border-color: rgba(239, 68, 68, 0.4);
 }
 
@@ -460,15 +562,15 @@
   transform-style: preserve-3d;
   position: relative;
   background: var(--black-glass);
-  backdrop-filter: blur(18px);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(239, 68, 68, 0.15);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.1);
 }
 
 .certification-card:hover {
   transform: translateY(-10px) rotateX(5deg) rotateY(2deg) scale(1.02);
-  box-shadow: 0 20px 40px rgba(239, 68, 68, 0.25), 0 12px 25px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 20px 40px rgba(239, 68, 68, 0.3), 0 12px 25px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
 /* 3D Education Card Effects */
@@ -477,15 +579,15 @@
   transform-style: preserve-3d;
   position: relative;
   background: var(--black-glass);
-  backdrop-filter: blur(22px);
-  border: 1px solid rgba(239, 68, 68, 0.25);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(239, 68, 68, 0.15);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.1);
 }
 
 .education-card:hover {
   transform: translateY(-12px) rotateX(6deg) rotateY(3deg) scale(1.02);
-  box-shadow: 0 25px 50px rgba(239, 68, 68, 0.25), 0 15px 30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(239, 68, 68, 0.2);
-  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow: 0 25px 50px rgba(239, 68, 68, 0.3), 0 15px 30px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
 }
 
 /* Enhanced text clarity with 3D effects */
@@ -563,6 +665,10 @@ a:hover {
   }
 
   /* Simplify cursor on mobile */
+  .cursor-container {
+    display: none;
+  }
+
   body,
   * {
     cursor: auto !important;
