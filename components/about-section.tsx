@@ -1,5 +1,4 @@
 import { TypingText } from "./typing-text"
-import ScrollFloat from "./scroll-float"
 
 export function AboutSection() {
   return (
@@ -7,18 +6,7 @@ export function AboutSection() {
       <div className="h-2" />
       <div className="container mx-auto">
         <h2 className="p-4 text-xl font-pixel text-red-400 md:p-10">
-          <ScrollFloat
-            animationDuration={1.5}
-            ease="back.inOut(2)"
-            scrollStart="top bottom-=50px"
-            scrollEnd="center center"
-            stagger={0.04}
-            containerClassName="inline-block"
-            textClassName="text-xl font-pixel text-red-400"
-            as="span"
-          >
-            About
-          </ScrollFloat>
+          <TypingText text="About" delay={800} />
           <span className="text-white font-pixel"> ( ) {"{"} </span>
         </h2>
         <div className="flex flex-col place-items-center text-white p-4 sm:ml-4 md:ml-6 md:px-10 pt-0">

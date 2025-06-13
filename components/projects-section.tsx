@@ -1,7 +1,6 @@
 import { Github } from "lucide-react"
 import { PixelSectionHeader } from "./pixel-section-header"
 import { TypingText } from "./typing-text"
-import ScrollFloat from "./scroll-float"
 
 export function ProjectsSection() {
   const projects = [
@@ -40,20 +39,7 @@ export function ProjectsSection() {
       <div className="h-2" />
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <PixelSectionHeader
-          title={
-            <ScrollFloat
-              animationDuration={1.2}
-              ease="back.inOut(1.9)"
-              scrollStart="top bottom-=60px"
-              scrollEnd="center center-=40px"
-              stagger={0.04}
-              containerClassName="inline-block"
-              textClassName="text-xl font-pixel text-red-400"
-              as="span"
-            >
-              Projects
-            </ScrollFloat>
-          }
+          title="Projects"
           imageSrc="/images/projects-pixel.png"
           className="p-4 sm:p-6 md:p-6 lg:p-10"
           delay={100}
